@@ -136,9 +136,13 @@ async def handle_stream_request(
         response_headers = prepare_response_headers(streamer.response.headers, proxy_headers.response)
 
         if method == "HEAD":
-            # For HEAD requests, just return the headers without streaming content
-            await streamer.close()
-            return Response(headers=response_headers, status_code=streamer.response.status_code)
+            # For GET requests, return the streaming response
+            return EnhancedStreamingResponse(
+                streamer.stream_content(),
+                headers=response_headers,
+                status_code=streamer.response.status_code,
+                background=BackgroundTask(streamer.close),
+            )
         else:
             # For GET requests, return the streaming response
             return EnhancedStreamingResponse(
