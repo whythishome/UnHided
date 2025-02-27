@@ -68,7 +68,7 @@ async def proxy_stream_endpoint(
     proxy_headers.request.update({"range": content_range})
     return await proxy_stream(request.method, stream_params, proxy_headers)
 
-
+@proxy_router.head("/mpd/manifest.m3u8")
 @proxy_router.get("/mpd/manifest.m3u8")
 async def mpd_manifest_proxy(
     request: Request,
@@ -108,7 +108,7 @@ async def playlist_endpoint(
     """
     return await get_playlist(request, playlist_params, proxy_headers)
 
-
+@proxy_router.head("/mpd/segment.mp4")
 @proxy_router.get("/mpd/segment.mp4")
 async def segment_endpoint(
     segment_params: Annotated[MPDSegmentParams, Query()],
