@@ -88,7 +88,7 @@ async def manifest_endpoint(
     """
     return await get_manifest(request, str(d), proxy_headers, key_id, key, verify_ssl, use_request_proxy)
 
-
+@proxy_router.head("/mpd/playlist")
 @proxy_router.get("/mpd/playlist")
 async def playlist_endpoint(
     request: Request,
@@ -118,7 +118,7 @@ async def playlist_endpoint(
     """
     return await get_playlist(request, str(d), profile_id, proxy_headers, key_id, key, verify_ssl, use_request_proxy)
 
-
+@proxy_router.head("/mpd/segment")
 @proxy_router.get("/mpd/segment")
 async def segment_endpoint(
     init_url: HttpUrl,
