@@ -60,7 +60,7 @@ async def proxy_stream_endpoint(
     proxy_headers.request.update({"range": proxy_headers.request.get("range", "bytes=0-")})
     return await proxy_stream(request.method, str(d), proxy_headers, verify_ssl, use_request_proxy)
 
-
+@proxy_router.head("/mpd/manifest")
 @proxy_router.get("/mpd/manifest")
 async def manifest_endpoint(
     request: Request,
