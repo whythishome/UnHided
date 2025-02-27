@@ -88,7 +88,7 @@ async def mpd_manifest_proxy(
     """
     return await get_manifest(request, manifest_params, proxy_headers)
 
-
+@proxy_router.head("/mpd/playlist.m3u8")
 @proxy_router.get("/mpd/playlist.m3u8")
 async def playlist_endpoint(
     request: Request,
