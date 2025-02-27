@@ -68,8 +68,8 @@ async def proxy_stream_endpoint(
     proxy_headers.request.update({"range": content_range})
     return await proxy_stream(request.method, stream_params, proxy_headers)
 
-@proxy_router.head("/mpd/manifest.m3u8")
 @proxy_router.get("/mpd/manifest.m3u8")
+@proxy_router.head("/mpd/manifest.m3u8")
 async def mpd_manifest_proxy(
     request: Request,
     manifest_params: Annotated[MPDManifestParams, Query()],
